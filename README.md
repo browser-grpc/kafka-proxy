@@ -7,7 +7,7 @@ from the main [grpc-over-datachannels](https://github.com/browser-grpc/grpc-over
 repo, browser and native — reach Kafka through it over stdio,
 length-prefixed TCP, or a WebRTC DataChannel.
 
-This repository is a generated export (version v0.35.9); the
+This repository is a generated export (version v0.35.10); the
 proxy sources live in `rust/examples/kafka_proxy/`.
 
 ## Run
