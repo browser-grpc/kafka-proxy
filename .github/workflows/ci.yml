@@ -1,0 +1,13 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build CI image (brokers + toolchain)
+        run: docker build -f docker/kafka-proxy-ci.Dockerfile -t kafka-proxy-ci .
+      - name: Run e2e suite (Apache Kafka + Redpanda)
+        run: docker run --rm kafka-proxy-ci
+      - name: Build runtime image
+        run: docker build -f docker/kafka-proxy.Dockerfile -t kafka-proxy .
