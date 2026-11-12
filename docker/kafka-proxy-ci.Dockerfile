@@ -10,6 +10,7 @@ RUN curl -fsSL https://linux.pkg.redpanda.com/setup-redpanda.deb.sh | bash && ap
 ENV KAFKA_HOME=/opt/kafka
 WORKDIR /src
 COPY rust ./rust
+COPY crates/kafka-native ./crates/kafka-native
 COPY webrtc/rust ./webrtc/rust
 COPY proto ./proto
 COPY fixtures ./fixtures
