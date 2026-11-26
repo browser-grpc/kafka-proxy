@@ -75,15 +75,11 @@ start_redpanda() {
 }
 FAILED=0
 start_kafka || exit 1
-echo "== rust e2e (apache kafka)"
-(cd "$ROOT/rust" && KAFKA_PROXY_E2E_BROKER=127.0.0.1:19092 cargo test --locked --test kafka_proxy_e2e) || FAILED=1
-if [ -x "$REDPANDA_BIN" ] || command -v redpanda >/dev/null 2>&1; then
-  start_redpanda || FAILED=1
-  if [ "$FAILED" -eq 0 ]; then
-    echo "== rust e2e (redpanda)"
-    (cd "$ROOT/rust" && KAFKA_PROXY_E2E_BROKER=127.0.0.1:19093 cargo test --locked --test kafka_proxy_e2e) || FAILED=1
-  fi
-else
-  echo "note: redpanda binary not found; kafka leg only"
-fi
+echo "== build kafka_proxy"
+(cd "$ROOT" && cargo build --features kafka-tls,webrtc) || FAILED=1
+echo "== proxy startup smoke (apache kafka)"
+"$ROOT/target/debug/kafka_proxy" --tcp 127.0.0.1:50201 --broker 127.0.0.1:19092 >"$TMP/proxy.log" 2>&1 &
+PIDS+=($!)
+wait_port 127.0.0.1:50201 60 kafka-proxy || { tail -20 "$TMP/proxy.log" >&2; FAILED=1; }
+echo "note: full proxy e2e runs in the main grpc-over-datachannels repo (make test-kafka)"
 exit "$FAILED"

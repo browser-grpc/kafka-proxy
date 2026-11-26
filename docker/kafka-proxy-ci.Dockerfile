@@ -9,10 +9,7 @@ RUN curl -fsSL https://downloads.apache.org/kafka/4.3.1/kafka_2.13-4.3.1.tgz -o 
 RUN curl -fsSL https://linux.pkg.redpanda.com/setup-redpanda.deb.sh | bash && apt-get update && apt-get install -y --no-install-recommends redpanda && rm -rf /var/lib/apt/lists/*
 ENV KAFKA_HOME=/opt/kafka
 WORKDIR /src
-COPY rust ./rust
-COPY crates/kafka-native ./crates/kafka-native
-COPY webrtc/rust ./webrtc/rust
-COPY proto ./proto
-COPY fixtures ./fixtures
+COPY Cargo.toml ./Cargo.toml
+COPY src ./src
 COPY scripts/run-e2e.sh ./scripts/run-e2e.sh
 CMD ["bash", "scripts/run-e2e.sh"]
