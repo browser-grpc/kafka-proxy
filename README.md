@@ -1,5 +1,7 @@
 # Kafka over gRPC — proxy
 
+What this is: the runnable **gateway** between `kafka-grpc` clients and a broker. It is not a client library — applications use the `kafka-grpc` generated stubs to talk to it, or `kafka-native` for direct in-process Kafka access with no gRPC. Decision guide: [KAFKA.md](KAFKA.md) ("Which Kafka package do I need?").
+
 A Rust proxy that exposes an Apache Kafka or Redpanda cluster as
 the generated `grpcdc.kafka.v1.Kafka` gRPC service (see
 [KAFKA.md](KAFKA.md)). Generated clients in every language —
@@ -9,7 +11,7 @@ length-prefixed TCP, or a WebRTC DataChannel.
 
 **Watch:** [Kafka over gRPC: A Rust Kafka Proxy With Generated Clients](https://youtu.be/KJ98a4ApZ4E) — narrated walkthrough with a live demo against Apache Kafka. Background: [Kafka over gRPC](https://c100k.blogspot.com/2026/10/kafka-over-grpc-rust-kafka-proxy-with.html) on the project blog.
 
-This repository is a generated export (version v0.47.2); the
+This repository is a generated export (version v0.47.3); the
 proxy sources live in `rust/examples/kafka_proxy/`.
 
 ## Run
