@@ -76,7 +76,7 @@ start_redpanda() {
 FAILED=0
 start_kafka || exit 1
 echo "== build kafka_proxy"
-(cd "$ROOT" && cargo build --features kafka-tls,webrtc) || FAILED=1
+(cd "$ROOT" && cargo build --features kafka-tls) || FAILED=1
 echo "== proxy startup smoke (apache kafka)"
 "$ROOT/target/debug/kafka_proxy" --tcp 127.0.0.1:50201 --broker 127.0.0.1:19092 >"$TMP/proxy.log" 2>&1 &
 PIDS+=($!)

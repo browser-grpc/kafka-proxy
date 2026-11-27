@@ -1,6 +1,6 @@
 [package]
 name = "kafka-proxy"
-version = "0.48.7"
+version = "0.48.8"
 edition = "2021"
 description = "kafka-proxy executable: gateway exposing Apache Kafka/Redpanda to kafka-grpc clients (generated grpcdc.kafka.v1 service over stdio/TCP/WebRTC DataChannel)"
 license = "Apache-2.0"
@@ -12,13 +12,13 @@ path = "src/main.rs"
 [features]
 default = []
 # Run over the reimplemented WebRTC stack (via grpc-dc).
-webrtc = ["grpc-dc/webrtc"]
+webrtc = []
 # TLS to the broker (mirrors the grpc-dc kafka-tls feature).
 kafka-tls = ["grpc-dc/kafka-tls"]
 
 [dependencies]
-grpc-dc = { git = "https://github.com/browser-grpc/grpc-over-datachannels", tag = "v0.48.7" }
-kafka-native = { version = "0.48.7" }
-kafka-service = { version = "0.48.7" }
+grpc-dc = { version = "0.48.8" }
+kafka-native = { version = "0.48.8" }
+kafka-service = { version = "0.48.8" }
 bytes = "1"
 tokio = { version = "1", features = ["rt", "rt-multi-thread", "macros", "sync", "time", "io-util", "net"] }
