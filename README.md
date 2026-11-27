@@ -11,7 +11,7 @@ length-prefixed TCP, or a WebRTC DataChannel.
 
 **Watch:** [Kafka over gRPC: A Rust Kafka Proxy With Generated Clients](https://youtu.be/KJ98a4ApZ4E) — narrated walkthrough with a live demo against Apache Kafka. Background: [Kafka over gRPC](https://c100k.blogspot.com/2026/10/kafka-over-grpc-rust-kafka-proxy-with.html) on the project blog.
 
-This repository is a generated export (version v0.48.6); the
+This repository is a generated export (version v0.48.7); the
 proxy sources live in `apps/kafka-proxy/` in the source repo; this export carries the proxy crate at its root.
 
 ## Run
